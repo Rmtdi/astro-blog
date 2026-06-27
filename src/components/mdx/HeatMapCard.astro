@@ -369,19 +369,19 @@ const i18n = getI18n().heatmap;
     flex-direction: row;
     justify-content: center;
     margin: 12px 0;
-    --heat-level-0: color-mix(in srgb, var(--red-0) 10%, white);
-    --heat-level-1: color-mix(in srgb, var(--red-0) 40%, white);
-    --heat-level-2: color-mix(in srgb, var(--red-0) 80%, white);
-    --heat-level-3: var(--red-0);
-    --heat-level-4: color-mix(in srgb, var(--red-0) 80%, black);
+    --heat-level-0: color-mix(in srgb, var(--accent-0) 10%, white);
+    --heat-level-1: color-mix(in srgb, var(--accent-0) 40%, white);
+    --heat-level-2: color-mix(in srgb, var(--accent-0) 80%, white);
+    --heat-level-3: var(--accent-0);
+    --heat-level-4: color-mix(in srgb, var(--accent-0) 80%, black);
   }
 
   [data-theme="dark"] .outer-box {
     --heat-level-0: #161b22;
-    --heat-level-1: color-mix(in srgb, var(--red-0) 30%, transparent);
-    --heat-level-2: color-mix(in srgb, var(--red-0) 50%, transparent);
-    --heat-level-3: color-mix(in srgb, var(--red-0) 70%, transparent);
-    --heat-level-4: var(--red-0);
+    --heat-level-1: color-mix(in srgb, var(--accent-0) 30%, transparent);
+    --heat-level-2: color-mix(in srgb, var(--accent-0) 50%, transparent);
+    --heat-level-3: color-mix(in srgb, var(--accent-0) 70%, transparent);
+    --heat-level-4: var(--accent-0);
   }
 
   .calendar-container {
@@ -428,7 +428,7 @@ const i18n = getI18n().heatmap;
     width: 10px;
     height: 10px;
     border-radius: 2px;
-    outline: 1px solid color-mix(in srgb, var(--red-2) 10%, transparent);
+    outline: 1px solid color-mix(in srgb, var(--accent-2) 10%, transparent);
     outline-offset: -1px;
   }
 
@@ -453,7 +453,7 @@ const i18n = getI18n().heatmap;
   }
 
   i.tile:hover {
-    outline: 1px solid var(--red-2);
+    outline: 1px solid var(--accent-2);
     cursor: pointer;
   }
 
@@ -481,7 +481,7 @@ const i18n = getI18n().heatmap;
 
   #heatmap-tooltip li:hover::marker {
     transition: color 0.2s;
-    color: var(--red-1);
+    color: var(--accent-1);
   }
 
   #heatmap-tooltip a {

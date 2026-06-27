@@ -2,9 +2,8 @@
 title: 激活Typora
 categories:
   - 笔记
-tags:
-  - null
-date: 2024-04-20 12:04:41
+tags: []
+pubDate: 2024-04-20 12:04:41
 ---
 
 ## 就写文章来说，还是用专门的软件比较好

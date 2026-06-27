@@ -10,7 +10,7 @@ export default {
 
   sidebar: {
     avatar: "/images/avatar.webp",
-    position: "right", // left or right
+    position: "left", // left or right
   },
 
   widgets: ["recent_posts", "category", "tag", "tagcloud"],
@@ -206,10 +206,10 @@ export default {
           move: ["emit"],
           easing: "easeOutExpo",
           colors: [
-            "var(--red-1)",
-            "var(--red-2)",
-            "var(--red-3)",
-            "var(--red-4)",
+            "var(--accent-1)",
+            "var(--accent-2)",
+            "var(--accent-3)",
+            "var(--accent-4)",
           ],
           number: 20,
           duration: [1200, 1800],
@@ -222,7 +222,7 @@ export default {
           shape: "circle",
           move: ["diffuse"],
           easing: "easeOutExpo",
-          colors: ["var(--red-0)"],
+          colors: ["var(--accent-0)"],
           number: 1,
           duration: [1200, 1800],
           shapeOptions: {

@@ -9,7 +9,7 @@ const blog = defineCollection({
   }),
   schema: z.object({
     title: z.string(),
-    description: z.string(),
+    description: z.string().optional(),
     keywords: z.union([z.string(), z.array(z.string())]).optional(),
     tags: z.array(z.string()).optional(),
     categories: z.array(z.string()).optional(),

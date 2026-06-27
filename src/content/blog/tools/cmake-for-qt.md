@@ -2,9 +2,8 @@
 title: Qt默认缺少的cmake配置
 categories:
   - 笔记
-tags:
-  - null
-date: 2024-01-13 12:20:09
+tags: []
+pubDate: 2024-01-13 12:20:09
 ---
 
 ## 设置CMAKE_PREFIX_PATH

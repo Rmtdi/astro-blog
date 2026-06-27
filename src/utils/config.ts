@@ -263,6 +263,6 @@ if (!_BASE_URL.startsWith("/")) {
 }
 export const BASE_URL = _BASE_URL;
 
-export const SITE_URL = import.meta.env.SITE.endsWith("/")
-  ? import.meta.env.SITE.slice(0, -1)
-  : import.meta.env.SITE;
+export const SITE_URL = (import.meta.env.SITE || "").endsWith("/")
+  ? (import.meta.env.SITE || "").slice(0, -1)
+  : import.meta.env.SITE || "";

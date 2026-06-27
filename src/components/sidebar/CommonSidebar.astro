@@ -84,7 +84,7 @@ const normalizedPath = currentPath.endsWith('/') && currentPath.length > 1
       transition: opacity 0.3s;
       object-fit: cover;
       margin: 20px;
-      box-shadow: 0 0 15px 5px var(--color-red-6-shadow);
+      box-shadow: 0 0 15px 5px var(--color-accent-6-shadow);
       will-change: transform;
       transition: 0.3s;
 
@@ -96,7 +96,7 @@ const normalizedPath = currentPath.endsWith('/') && currentPath.length > 1
     .sidebar-author-name {
       font-weight: bold;
       font-size: 20px;
-      color: var(--red-2);
+      color: var(--accent-2);
       margin: 12px;
     }
 
@@ -111,7 +111,7 @@ const normalizedPath = currentPath.endsWith('/') && currentPath.length > 1
     display: flex;
     justify-content: center;
     padding: 24px 0;
-    color: var(--red-0);
+    color: var(--accent-0);
     opacity: 0.8;
     transition: opacity 0.5s, color 0.5s;
 
@@ -133,11 +133,11 @@ const normalizedPath = currentPath.endsWith('/') && currentPath.length > 1
   }
 
   .sidebar-state-article {
-    border-right: 1px solid var(--red-1);
+    border-right: 1px solid var(--accent-1);
   }
 
   .sidebar-state-tag {
-    border-left: 1px solid var(--red-1);
+    border-left: 1px solid var(--accent-1);
   }
 
   .sidebar-state-number {
@@ -157,7 +157,7 @@ const normalizedPath = currentPath.endsWith('/') && currentPath.length > 1
     max-width: 200px;
     margin: 8px auto;
     justify-content: center;
-    border: 10px var(--color-red-3-shadow) double;
+    border: 10px var(--color-accent-3-shadow) double;
     transition: border 0.5s, background 0.5s, color 0.5s;
 
     &:hover {
@@ -202,9 +202,9 @@ const normalizedPath = currentPath.endsWith('/') && currentPath.length > 1
   }
 
   .link-active {
-    background: var(--red-0);
+    background: var(--accent-0);
     border: 10px var(--color-wrap) double;
-    box-shadow: var(--shadow-red-6-shadow);
+    box-shadow: var(--shadow-accent-6-shadow);
     opacity: 0.8;
 
     &:hover {

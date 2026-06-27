@@ -5,7 +5,7 @@ categories:
 tags:
   - VSCode
   - C#
-date: 2023-02-25 13:05:59
+pubDate: 2023-02-25 13:05:59
 ---
 
 用vsc写c#的理由有很多，C盘撑不住，VS启动慢等等。

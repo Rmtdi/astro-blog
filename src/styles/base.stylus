@@ -27,7 +27,7 @@
       bottom: -18px;
       left: 0;
       border-radius: 8px;
-      box-shadow: var(--shadow-red-6-shadow);
+      box-shadow: var(--shadow-accent-6-shadow);
     }
 
     &:hover:after {
@@ -56,11 +56,11 @@
     margin: 12px 0;
     opacity: 0.3;
     height: 4px;
-    background-image: linear-gradient(to right, var(--red-0) 50%, transparent 0%);
+    background-image: linear-gradient(to right, var(--accent-0) 50%, transparent 0%);
     background-size: 50px 4px;
     background-repeat: repeat-x;
     border: none;
-    filter: drop-shadow(0px 0px 2px var(--red-1));
+    filter: drop-shadow(0px 0px 2px var(--accent-1));
     transition: opacity 0.3s, color 0.3s;
 
     &:hover {

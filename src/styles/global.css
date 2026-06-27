@@ -1,50 +1,50 @@
 :root {
-  --red-0: #ff0000;
-  --red-1: #ff5252;
-  --red-2: #ff7c7c;
-  --red-3: #ffafaf;
-  --red-4: #ffd0d0;
-  --red-5: #ffecec;
-  --red-5-5: #fff3f3;
-  --red-6: #fff7f7;
-  --color-red-6-shadow: rgba(255, 78, 78, 0.6);
-  --color-red-3-shadow: rgba(255, 78, 78, 0.3);
+  --accent-0: #5c7a32;
+  --accent-1: #7d9b4e;
+  --accent-2: #9fb87a;
+  --accent-3: #c4d9a8;
+  --accent-4: #e2edce;
+  --accent-5: #f0f2e5;
+  --accent-5-5: #f5f7ed;
+  --accent-6: #fafbf5;
+  --color-accent-6-shadow: rgba(125, 155, 78, 0.6);
+  --color-accent-3-shadow: rgba(125, 155, 78, 0.3);
   --grey-9: #888;
   --grey-7: var(--color-default);
 
   --color-archive-year: black;
   --color-default: #444;
-  --color-border: var(--red-3);
-  --color-link: var(--red-1);
-  --color-background: #eee;
+  --color-border: var(--accent-3);
+  --color-link: var(--accent-1);
+  --color-background: #fdfaf3;
   --color-code-background: #f8f8f8;
-  --color-header-background: rgba(255, 255, 255, 0.9);
-  --color-footer-background: #fff;
-  --color-mobile-nav-background: #fff;
-  --color-wrap: #fff;
+  --color-header-background: rgba(253, 250, 243, 0.9);
+  --color-footer-background: #fffbf5;
+  --color-mobile-nav-background: #fffbf5;
+  --color-wrap: #fffbf5;
 
   --color-h2-border: #eee;
-  --color-meta-shadow: var(--red-6);
+  --color-meta-shadow: var(--accent-6);
   --color-hover-shadow: rgba(120, 120, 120, 0.15);
-  --color-h2-after: var(--red-1);
+  --color-h2-after: var(--accent-1);
 
   --shadow-meta: 0 0 5px 2px var(--color-meta-shadow);
   --shadow-meta-hover: 0 0 6px 4px var(--color-meta-shadow);
   --shadow-card: 0 0 10px 2px var(--color-hover-shadow);
   --shadow-card-hover: 0 0 10px 4px var(--color-hover-shadow);
-  --shadow-red-6-shadow: 0 0 8px var(--color-red-6-shadow);
+  --shadow-accent-6-shadow: 0 0 8px var(--color-accent-6-shadow);
 }
 
 [data-theme="dark"]:root {
-  --red-0: var(--red-1);
-  --red-4: rgba(255, 208, 208, .5);
-  --red-5: rgba(255, 228, 228, .15);
-  --red-5-5: rgba(255, 236, 236, .05);
-  --red-6: rgba(255, 243, 243, .2);
+  --accent-0: var(--accent-1);
+  --accent-4: rgba(194, 217, 168, .5);
+  --accent-5: rgba(240, 242, 229, .15);
+  --accent-5-5: rgba(245, 247, 237, .05);
+  --accent-6: rgba(250, 251, 245, .2);
 
   --color-archive-year: #999;
   --color-default: #999;
-  --color-border: var(--red-5);
+  --color-border: var(--accent-5);
   --color-background: #21252b;
   --color-code-background: rgba(232, 232, 232, 0.2);
   --color-header-background: #222222;
@@ -205,7 +205,7 @@ body {
 }
 
 ::selection {
-  background: var(--red-1);
+  background: var(--accent-1);
   color: #fff;
 }
 
@@ -267,7 +267,7 @@ body {
 
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background-color: var(--red-3);
+  background-color: var(--accent-3);
 }
 
 [data-aos^="fade"],

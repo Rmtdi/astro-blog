@@ -45,7 +45,7 @@
 }
 
 .popup-btn-close {
-  color: var(--red-1);
+  color: var(--accent-1);
   padding-left: 8px;
   font-size: 20px;
   transition: 0.3s;
@@ -126,7 +126,7 @@ hr {
 .reimu-hit-item-link {
   display: block;
   text-decoration: none;
-  color: var(--red-2);
+  color: var(--accent-2);
   padding: 12px 0 12px 24px;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -140,7 +140,7 @@ hr {
     display: inline-block;
     vertical-align: middle;
     margin: -2px 12px 0 -24px;
-    box-shadow: var(--shadow-red-6-shadow);
+    box-shadow: var(--shadow-accent-6-shadow);
     opacity: 0.5;
     transition: 0.2s;
   }
