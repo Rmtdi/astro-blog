@@ -65,92 +65,84 @@ const copyright = String.raw`
   // Runs on view transitions navigation
   document.addEventListener("astro:after-swap", initColorMode);
 </script>
-<!-- Note burst: click to spawn notes flying outward like fireworks -->
+<!-- Note burst -->
 <script>
   document.addEventListener('astro:page-load', () => {
     document.addEventListener('click', (e) => {
-      // 跳过链接/按钮点击，避免路由跳转时粒子残留
       if (e.target.closest('a, button, .nav-icon, #main-nav-toggle')) return;
 
-      const notes = ['♪', '♫', '♩', '♬'];
-
-      // 萌妹二次元 — 马卡龙色盘 (饱和提高、不透明度 0.9)
-      const macarons = [
-        'hsla(348,78%,72%,0.90)',  // 樱花粉
-        'hsla(348,62%,78%,0.90)',  // 淡樱
-        'hsla(260,58%,74%,0.90)',  // 薰衣草紫
-        'hsla(215,68%,70%,0.90)',  // 雾蓝
-        'hsla(170,58%,70%,0.90)',  // 薄荷绿
-        'hsla(25,75%,72%,0.90)',   // 蜜桃
-        'hsla(45,68%,74%,0.90)',   // 奶油黄
-        'hsla(330,55%,76%,0.90)',  // 浅玫瑰
+      var notes = ['♪', '♫', '♩', '♬'];
+      var colors = [
+        'hsla(348,78%,72%,1)','hsla(348,62%,78%,1)','hsla(260,58%,74%,1)',
+        'hsla(215,68%,70%,1)','hsla(170,58%,70%,1)','hsla(25,75%,72%,1)',
+        'hsla(45,68%,74%,1)','hsla(330,55%,76%,1)',
       ];
+      var cx = e.clientX, cy = e.clientY;
 
-      // ---- 扩散光环 ----
-      const ring = document.createElement('div');
-      const ringMaxRadius = 150 * 0.8; // 缩小 0.8 倍
-      ring.style.cssText =
-        'position:fixed;pointer-events:none;z-index:99998;' +
-        'left:' + (e.clientX - ringMaxRadius) + 'px;' +
-        'top:' + (e.clientY - ringMaxRadius) + 'px;' +
-        'width:' + (ringMaxRadius * 2) + 'px;' +
-        'height:' + (ringMaxRadius * 2) + 'px;' +
-        'border-radius:50%;' +
-        'border:2px solid hsla(348,78%,72%,0.70);' +
-        'transform:scale(0);opacity:1;' +
-        // 光环的 CSS transition 0.75s
-        'transition:opacity 0.75s ease-out, transform 0.75s ease-out;';
+      // 圆环 linear 淡出 0.5s
+      var ringMax = 70;
+      var ringStart = performance.now();
+      var ring = document.createElement('div');
+      ring.style.cssText = 'position:fixed;pointer-events:none;z-index:99998;border-radius:50%;' +
+        'border:2px solid hsla(170,50%,65%,0.85);left:' + cx + 'px;top:' + cy + 'px;width:0;height:0;opacity:1;';
       document.body.appendChild(ring);
-      requestAnimationFrame(() => {
-        ring.style.transform = 'scale(1)';
-        ring.style.opacity = '0';
-      });
-      setTimeout(() => ring.remove(), 750);
-      // ---- 光环结束 ----
+      (function animRing() {
+        var t = Math.min((performance.now() - ringStart) / 400, 1);
+        var r = ringMax * t;
+        ring.style.left = (cx - r) + 'px'; ring.style.top = (cy - r) + 'px';
+        ring.style.width = (r * 2) + 'px'; ring.style.height = (r * 2) + 'px';
+        ring.style.opacity = 1 - t;
+        if (t < 1) requestAnimationFrame(animRing);
+        else ring.remove();
+      })();
 
-      const count = 16; // 固定 16 个，有爆炸感
-      const maxDistance = 200 * 0.8; // 缩小 0.8 倍
-
-      for (let i = 0; i < count; i++) {
-        const note = notes[Math.floor(Math.random() * notes.length)];
-        const el = document.createElement('span');
+      // 粒子：一开始大然后快速变小 + 飞散
+      var count = 10, maxRadius = 95;
+      for (var i = 0; i < count; i++) {
+        var ang = Math.random() * Math.PI * 2 + (Math.random()-0.5)*0.3;
+        var spd = 120 + Math.random() * 120;
+        var g = 40 + Math.random() * 40;
+        var note = notes[i % notes.length];
+        var el = document.createElement('span');
         el.textContent = note;
-
-        const angle = Math.PI * 2 * (i / count) + (Math.random() - 0.5) * 1.2; // 加了随机方向偏移
-        const distance = (80 + Math.random() * 200) * 0.8;
-        const dx = Math.cos(angle) * distance;
-        const dy = Math.sin(angle) * distance;
-        const size = (28 + Math.random() * 36) * 0.8;
-
-        el.style.cssText =
-          'position:fixed;pointer-events:none;z-index:99999;' +
-          'font-size:' + size + 'px;' +
-          'font-weight:bold;' +
-          'color:' + macarons[Math.floor(Math.random() * macarons.length)] + ';' +
-          'left:' + (e.clientX - size / 2) + 'px;' +
-          'top:' + (e.clientY - size / 2) + 'px;' +
-          'transition:opacity 1s cubic-bezier(.1,.7,.2,1), ' +
-          'transform 1s cubic-bezier(.1,.7,.2,1);'
-
+        // 初始 38px，每个粒子起始位置 jitter 进一步分散
+        var jitter = 30;
+        el.style.cssText = 'position:fixed;pointer-events:none;z-index:99999;' +
+          'font-size:38px;font-weight:bold;' +
+          'color:' + colors[i % colors.length] + ';' +
+          'left:' + (cx - 19 + (Math.random()-0.5)*jitter) + 'px;' +
+          'top:' + (cy - 19 + (Math.random()-0.5)*jitter) + 'px;opacity:1;';
         document.body.appendChild(el);
 
-        // 延迟 20~80ms 开始，避免所有粒子同步出发
-        const delay = Math.random() * 60;
-        setTimeout(() => {
-          requestAnimationFrame(() => {
-            el.style.opacity = '0';
-            el.style.transform =
-              'translate(' + dx + 'px,' + dy + 'px)' +
-              ' rotate(' + (Math.random() * 180 - 90) + 'deg)' +
-              ' scale(0.2)';
-          });
-        }, delay);
+        var vx = Math.cos(ang) * spd;
+        var vy = Math.sin(ang) * spd - 40;
+        var born = performance.now();
+        var ox = cx + (Math.random()-0.5)*30;
+        var oy = cy + (Math.random()-0.5)*30;
 
-        setTimeout(() => el.remove(), 1060);
+        (function(el, ox, oy, vx, vy, g, born) {
+          (function anim(now) {
+            var dt = (now - born) / 1000;
+            if (dt > 0.7) { el.remove(); return; }
+            var t = Math.min(dt / 0.7, 1);
+            var x = ox + vx * dt;
+            var y = oy + vy * dt + 0.5 * g * dt * dt;
+            if (Math.sqrt((x-ox)*(x-ox)+(y-oy)*(y-oy)) > maxRadius) { el.remove(); return; }
+            // 先慢后快：ease-out 二次方，从 34px 缩到 6px
+            var shrink = 1 - Math.pow(1 - t, 1.5);
+            var curSize = 38 - 24 * shrink;
+            el.style.fontSize = curSize + 'px';
+            el.style.left = (x - curSize / 2) + 'px';
+            el.style.top = (y - curSize / 2) + 'px';
+            el.style.opacity = Math.pow(1 - t, 0.5);
+            requestAnimationFrame(anim);
+          })(born);
+        })(el, ox, oy, vx, vy, g, born);
       }
     });
   });
 </script>
+
 <!-- Copyright -->
 <script is:inline define:vars={{ copyright, version: packageData.version }}>
   console.log(String.raw`%c ${copyright}`,'color: #7d9b4e;')

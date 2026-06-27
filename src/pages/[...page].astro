@@ -74,7 +74,7 @@ const { page } = Astro.props;
                 loading="lazy"
                 decoding="async"
                 fetchpriority="low"
-                src={urlFor(post.data.cover || randomCover() || BANNER)}
+                src={urlFor(post.data.cover || randomCover(post.id) || BANNER)}
                 alt={post.data.title}
               />
             </div>

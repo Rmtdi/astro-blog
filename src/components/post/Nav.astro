@@ -20,7 +20,7 @@ const { prev, next } = Astro.props;
         <div class="article-nav-link-wrap article-nav-link-left">
           <img
             loading="lazy"
-            src={urlFor(prev.data.cover || randomCover() || BANNER)}
+            src={urlFor(prev.data.cover || randomCover(prev.id) || BANNER)}
             alt={prev.data.title}
           />
           <a href={urlFor(`blog/${prev.id}`)} aria-label="Previos Post" />
@@ -32,7 +32,7 @@ const { prev, next } = Astro.props;
         <div class="article-nav-link-wrap article-nav-link-right">
           <img
             loading="lazy"
-            src={urlFor(next.data.cover || randomCover() || BANNER)}
+            src={urlFor(next.data.cover || randomCover(next.id) || BANNER)}
             alt={next.data.title}
           />
           <a href={urlFor(`blog/${next.id}`)} aria-label="Next Post" />
