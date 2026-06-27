@@ -1,4 +1,4 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig, passthroughImageService } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import astroExpressiveCode from 'astro-expressive-code';
@@ -15,6 +15,9 @@ import rehypeLazyLoadImage from './src/plugins/lazyLoadImage.mjs';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://example.com',
+  image: {
+    service: passthroughImageService(),
+  },
   markdown: {
     remarkPlugins: [remarkMath],
     rehypePlugins: [rehypeKatex, rehypeLazyLoadImage],

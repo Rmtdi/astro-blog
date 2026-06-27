@@ -95,9 +95,17 @@ const headerImage = cover || BANNER;
     <MobileNav isPost={isPost} headings={headings} toc={toc} />
     <div id="mask" class="hide"></div>
     <SidebarScript />
-    <script>
-      import { css } from "../assets/LXGWWenKaiScreen.ttf";
-      document.body.style.fontFamily = css.family as string;
-    </script>
+    <style is:global>
+      @font-face {
+        font-family: 'LXGW WenKai Screen';
+        src: url('/fonts/LXGWWenKaiScreen.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'LXGW WenKai Screen', sans-serif;
+      }
+    </style>
   </body>
 </html>
