@@ -14,11 +14,16 @@ import { PRELOADER } from "../../utils/config";
 </div>
 
 <script is:inline>
-  // 打字机效果：♪～♪～K-ON!
-  const text = "♪～♪～K-ON!";
+  const text = "♪~♪~K-ON!";
   const speeds = [50, 50, 50, 50, 80, 400, 80, 80, 80];
   var charIndex = 0;
   var el = document.getElementById("loading-text");
+
+  function startTyping() {
+    charIndex = 0;
+    el.textContent = "";
+    typeChar();
+  }
 
   function typeChar() {
     if (charIndex < text.length) {
@@ -28,10 +33,16 @@ import { PRELOADER } from "../../utils/config";
       setTimeout(typeChar, delay);
     }
   }
-  typeChar();
+  startTyping();
+
+  function showLoader() {
+    document.body.style.overflow = "hidden";
+    document.getElementById("loader").classList.remove("loading");
+    startTyping();
+  }
 
   var time = null;
-  var endLoading = () => {
+  function endLoading() {
     if (!time) {
       document.body.style.overflow = "auto";
       document.getElementById("loader").classList.add("loading");
@@ -45,11 +56,11 @@ import { PRELOADER } from "../../utils/config";
         time = null;
       }
     }
-  };
+  }
   window.addEventListener("DOMContentLoaded", endLoading);
   document.addEventListener("astro:page-load", endLoading);
-  document.getElementById("loader").addEventListener("click", endLoading);
-</script>
+  document.addEventListener("astro:before-swap", showLoader);
+  document.getElementById("loader").addEventListener("click", endLoading);</script>
 
 <style lang="stylus">
 :global([data-theme="dark"])
