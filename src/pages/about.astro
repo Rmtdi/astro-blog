@@ -1,0 +1,47 @@
+---
+import { Icon } from "astro-icon/components";
+import { SITE } from "../utils/config";
+import MarkdownLayout from "../layouts/MarkdownLayout.astro";
+
+const frontmatter = {
+  title: "关于",
+  description: `${SITE.title} 关于页面`,
+  pubDate: new Date("2026-06-27"),
+  comment: false,
+  toc: false,
+};
+---
+
+<MarkdownLayout frontmatter={frontmatter}>
+  <p>我是元洛，喜欢游戏和画画的普通人。</p>
+  <p>这个博客用来记录技术教程、文章小说、生活随笔，以及各种想写的东西。</p>
+
+  <hr />
+
+  <h2>作品</h2>
+  <p style="color: var(--grey-9, #888);"></p>
+
+  <h2>找到我</h2>
+  <div class="social-links">
+    <a href="https://github.com/Rmtdi" title="GitHub" target="_blank" rel="noopener">
+      <Icon name="fa6-brands:github" size={28} />
+    </a>
+  </div>
+</MarkdownLayout>
+
+<style>
+  .social-links {
+    display: flex;
+    gap: 1rem;
+    margin: 0.5rem 0;
+  }
+
+  .social-links a {
+    color: var(--accent-1, #7d9b4e);
+    transition: color 0.2s;
+  }
+
+  .social-links a:hover {
+    color: var(--accent-0, #5c7a32);
+  }
+</style>
