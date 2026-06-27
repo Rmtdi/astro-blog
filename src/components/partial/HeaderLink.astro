@@ -1,14 +1,20 @@
 ---
 import type { HTMLAttributes } from "astro/types";
 import { Icon } from "astro-icon/components";
+import { MENU } from "../../utils/config";
+import { __ } from "../../utils/i18n";
 
-type Props = HTMLAttributes<"a">;
+type Props = HTMLAttributes<"a"> & { name?: string };
 
-const { href, ...props } = Astro.props;
+const { href, name, ...props } = Astro.props;
+// each menu item gets a different tea cup icon
+const icons = ["mug-hot", "mug-saucer", "martini-glass"];
+const iconIndex = MENU.findIndex(m => m.url === href);
+const iconName = icons[iconIndex >= 0 && iconIndex < icons.length ? iconIndex : 0];
 ---
 
 <span class="main-nav-link-wrap">
-  <Icon name="fa6-solid:yin-yang" class="main-nav-icon" size={24} />
+  <Icon name={"fa6-solid:" + iconName} class="main-nav-icon" size={24} />
   <a class="main-nav-link" href={href} {...props}><slot /></a>
 </span>
 
@@ -33,7 +39,7 @@ const { href, ...props } = Astro.props;
       opacity: 1;
     }
     &:hover .main-nav-icon {
-      transform: rotate(90deg) scale(1.1);
+      transform: scale(1.1);
     }
   }
 
@@ -63,7 +69,7 @@ const { href, ...props } = Astro.props;
     align-items: center;
     font-size: 24px;
     font-weight: 400;
-    transform: rotate(90deg);
+    transform: scale(1);
     transition: transform 0.3s, color 0.3s;
     cursor: pointer;
     will-change: transform;

@@ -6,30 +6,30 @@ import { PRELOADER } from "../../utils/config";
   <div class="loading-left-bg loading-bg"></div>
   <div class="loading-right-bg loading-bg"></div>
   <div class="spinner-box">
-    <div class={PRELOADER.rotate ? "loading-taichi rotate" : "loading-taichi"}>
-      <svg
-        width="150"
-        height="150"
-        viewBox="0 0 1024 1024"
-        class="icon"
-        version="1.1"
-        xmlns="https://www.w3.org/2000/svg"
-        shape-rendering="geometricPrecision"
-      >
-        <path
-          d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z"
-          fill="var(--accent-1, #ff5252)"></path>
-        <path
-          d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
-       M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z"
-          fill="var(--accent-1, #ff5252)"></path>
-      </svg>
+    <div class="loading-taichi rotate">
+      <img src="/images/cup.png" width="100" height="100" alt="loading" />
     </div>
-    <div class="loading-word">{PRELOADER.text}</div>
+    <div class="loading-word" id="loading-text"></div>
   </div>
 </div>
 
 <script is:inline>
+  // 打字机效果：♪～♪～K-ON!
+  const text = "♪～♪～K-ON!";
+  const speeds = [50, 50, 50, 50, 80, 400, 80, 80, 80];
+  var charIndex = 0;
+  var el = document.getElementById("loading-text");
+
+  function typeChar() {
+    if (charIndex < text.length) {
+      el.textContent += text[charIndex];
+      var delay = speeds[charIndex];
+      charIndex++;
+      setTimeout(typeChar, delay);
+    }
+  }
+  typeChar();
+
   var time = null;
   var endLoading = () => {
     if (!time) {

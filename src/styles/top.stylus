@@ -17,6 +17,15 @@
     transition: .3s;
     animation: rotate-all 3s linear infinite;
     opacity: 1;
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: var(--color-wrap);
+    box-shadow: 0 0 4px rgba(0,0,0,.1);
   }
 
   .arrow-up {
@@ -40,3 +49,7 @@
     }
   }
 }
+
+@keyframes rotate-all
+  100%
+    transform: rotate(360deg)

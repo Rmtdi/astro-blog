@@ -1,15 +1,14 @@
 ---
-import { FOOTER, FIREWORK } from "../utils/config";
+import { FOOTER } from "../utils/config";
 import packageData from "../../package.json";
-const firework = FIREWORK;
 
 const copyright = String.raw`
- ______     ______     __     __    __     __  __    
-/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
-\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
- \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
-  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
-                                                  
+ ______     ______     __     __    __     __  __
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/
+
 `
 ---
 
@@ -66,40 +65,94 @@ const copyright = String.raw`
   // Runs on view transitions navigation
   document.addEventListener("astro:after-swap", initColorMode);
 </script>
-<!-- Firework -->
-{firework && firework.enable && (
-  <>
-    <script>
-      function initFirework() {
-        const config = window.__FIREWORK_CONFIG__;
-        
-        if (config && config.enable) {
-          if (config.disable_on_mobile && ('ontouchstart' in window || navigator.maxTouchPoints > 0)) {
-            return;
-          }
-          
-          import('mouse-firework').then((mod) => {
-            const fire = mod.default;
-            fire(config.options as Parameters<typeof fire>[0]);
-          }).catch((e) => {
-            console.warn('Failed to load mouse-firework', e);
-          });
-        }
-      }
-      
-      initFirework();
-      
-      document.addEventListener('astro:page-load', () => {
-        initFirework();
+<!-- Note burst: click to spawn notes flying outward like fireworks -->
+<script>
+  document.addEventListener('astro:page-load', () => {
+    document.addEventListener('click', (e) => {
+      // 跳过链接/按钮点击，避免路由跳转时粒子残留
+      if (e.target.closest('a, button, .nav-icon, #main-nav-toggle')) return;
+
+      const notes = ['♪', '♫', '♩', '♬'];
+
+      // 萌妹二次元 — 马卡龙色盘 (饱和提高、不透明度 0.9)
+      const macarons = [
+        'hsla(348,78%,72%,0.90)',  // 樱花粉
+        'hsla(348,62%,78%,0.90)',  // 淡樱
+        'hsla(260,58%,74%,0.90)',  // 薰衣草紫
+        'hsla(215,68%,70%,0.90)',  // 雾蓝
+        'hsla(170,58%,70%,0.90)',  // 薄荷绿
+        'hsla(25,75%,72%,0.90)',   // 蜜桃
+        'hsla(45,68%,74%,0.90)',   // 奶油黄
+        'hsla(330,55%,76%,0.90)',  // 浅玫瑰
+      ];
+
+      // ---- 扩散光环 ----
+      const ring = document.createElement('div');
+      const ringMaxRadius = 150 * 0.8; // 缩小 0.8 倍
+      ring.style.cssText =
+        'position:fixed;pointer-events:none;z-index:99998;' +
+        'left:' + (e.clientX - ringMaxRadius) + 'px;' +
+        'top:' + (e.clientY - ringMaxRadius) + 'px;' +
+        'width:' + (ringMaxRadius * 2) + 'px;' +
+        'height:' + (ringMaxRadius * 2) + 'px;' +
+        'border-radius:50%;' +
+        'border:2px solid hsla(348,78%,72%,0.70);' +
+        'transform:scale(0);opacity:1;' +
+        // 光环的 CSS transition 0.75s
+        'transition:opacity 0.75s ease-out, transform 0.75s ease-out;';
+      document.body.appendChild(ring);
+      requestAnimationFrame(() => {
+        ring.style.transform = 'scale(1)';
+        ring.style.opacity = '0';
       });
-    </script>
-    <script is:inline define:vars={{ firework }}>
-      window.__FIREWORK_CONFIG__ = firework;
-    </script>
-  </>
-)}
+      setTimeout(() => ring.remove(), 750);
+      // ---- 光环结束 ----
+
+      const count = 16; // 固定 16 个，有爆炸感
+      const maxDistance = 200 * 0.8; // 缩小 0.8 倍
+
+      for (let i = 0; i < count; i++) {
+        const note = notes[Math.floor(Math.random() * notes.length)];
+        const el = document.createElement('span');
+        el.textContent = note;
+
+        const angle = Math.PI * 2 * (i / count) + (Math.random() - 0.5) * 1.2; // 加了随机方向偏移
+        const distance = (80 + Math.random() * 200) * 0.8;
+        const dx = Math.cos(angle) * distance;
+        const dy = Math.sin(angle) * distance;
+        const size = (28 + Math.random() * 36) * 0.8;
+
+        el.style.cssText =
+          'position:fixed;pointer-events:none;z-index:99999;' +
+          'font-size:' + size + 'px;' +
+          'font-weight:bold;' +
+          'color:' + macarons[Math.floor(Math.random() * macarons.length)] + ';' +
+          'left:' + (e.clientX - size / 2) + 'px;' +
+          'top:' + (e.clientY - size / 2) + 'px;' +
+          'transition:opacity 1s cubic-bezier(.1,.7,.2,1), ' +
+          'transform 1s cubic-bezier(.1,.7,.2,1);'
+
+        document.body.appendChild(el);
+
+        // 延迟 20~80ms 开始，避免所有粒子同步出发
+        const delay = Math.random() * 60;
+        setTimeout(() => {
+          requestAnimationFrame(() => {
+            el.style.opacity = '0';
+            el.style.transform =
+              'translate(' + dx + 'px,' + dy + 'px)' +
+              ' rotate(' + (Math.random() * 180 - 90) + 'deg)' +
+              ' scale(0.2)';
+          });
+        }, delay);
+
+        setTimeout(() => el.remove(), 1060);
+      }
+    });
+  });
+</script>
 <!-- Copyright -->
 <script is:inline define:vars={{ copyright, version: packageData.version }}>
-  console.log(String.raw`%c ${copyright}`,'color: #ff5252;')
-  console.log('%c Theme.Reimu v' + `${version}` + ' %c https://github.com/D-Sketon/astro-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  console.log(String.raw`%c ${copyright}`,'color: #7d9b4e;')
+  console.log('%c Theme.Reimu v' + `${version}` + ' %c https://github.com/D-Sketon/astro-theme-reimu ', 'color: white; background: #7d9b4e; padding:5px 0;', 'padding:4px;border:1px solid #7d9b4e;')
 </script>

@@ -58,7 +58,7 @@ const normalizedPath = currentPath.endsWith('/') && currentPath.length > 1
         <div class={`sidebar-menu-link-wrap ${isActive ? "link-active" : ""}`}>
           <a class="sidebar-menu-link-dummy" href={itemUrl} />
           <div class="sidebar-menu-icon">
-            <Icon name="fa6-solid:yin-yang" size={24} />
+            <Icon name="fa6-solid:mug-hot" size={24} />
           </div>
           <div class="sidebar-menu-link">{__(item.name)}</div>
         </div>
@@ -165,7 +165,7 @@ const normalizedPath = currentPath.endsWith('/') && currentPath.length > 1
     }
 
     &:hover .sidebar-menu-icon {
-      transform: rotate(90deg) scale(1.1);
+      transform: scale(1.1);
     }
   }
 
@@ -179,7 +179,7 @@ const normalizedPath = currentPath.endsWith('/') && currentPath.length > 1
     align-items: center;
     pointer-events: none;
     will-change: transform;
-    transform: rotate(90deg);
+    transform: scale(1);
   }
 
   .sidebar-menu-link-dummy {

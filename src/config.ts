@@ -1,15 +1,15 @@
 export default {
   site: {
-    title: "My Blog",
-    subtitle: "My Blog Subtitle",
-    description: "D-Sketon's blog",
-    keywords: "D-Sketon, blog, astro, theme",
-    author: "D-Sketon",
+    title: "元洛の记事簿",
+    subtitle: "分享技术教程、文章小说、生活随笔等内容",
+    description: "菜鸟一枚",
+    keywords: "Yvanluo, blog, Rmtdi, rio, futaba, 元洛, 元洛の记事簿",
+    author: "Rmtdi_元洛",
     language: "zh-CN",
   },
 
   sidebar: {
-    avatar: "/images/avatar.webp",
+    avatar: "/images/avatar.JPG",
     position: "left", // left or right
   },
 
@@ -21,7 +21,7 @@ export default {
     { name: "about", url: "/about" },
   ],
 
-  banner: "/images/banner.webp", // which means themes/reimu/source/images/banner.webp
+  banner: "/images/banner.png", // which means themes/reimu/source/images/banner.png
   // You can also write it in the form of the following url
   // banner: "https://example.com"
 
@@ -29,9 +29,9 @@ export default {
   banner_srcset: {
     enable: true,
     srcset: [
-      { src: "/images/banner-600w.webp", media: "(max-width: 479px)" },
-      { src: "/images/banner-800w.webp", media: "(max-width: 799px)" },
-      { src: "/images/banner.webp", media: "(min-width: 800px)" },
+      { src: "/images/banner-600w.png", media: "(max-width: 479px)" },
+      { src: "/images/banner-800w.png", media: "(max-width: 799px)" },
+      { src: "/images/banner.png", media: "(min-width: 800px)" },
     ],
   },
 
@@ -58,10 +58,9 @@ export default {
 
   social: {
     // email: mailto:xxx@gmail.com
-    github: "https://github.com/yourname",
-    google: "https://plus.google.com/yourname",
-    twitter: "https://twitter.com/yourname",
-    facebook: "https://www.facebook.com/yourname",
+    github: "https://github.com/Rmtdi",
+    // twitter: "https://twitter.com/yourname",
+    // facebook: "https://www.facebook.com/yourname",
     // instagram: https://www.instagram.com/yourname
     // linkedin: https://www.linkedin.com/in/yourname
     // pinterest: https://www.pinterest.com/yourname
@@ -70,7 +69,7 @@ export default {
     // flickr: https://www.flickr.com/photos/yourname
     // dribbble: https://dribbble.com/yourname
     // behance: https://www.behance.net/yourname
-    // bilibili: https://space.bilibili.com/yourname
+    bilibili: "https://space.bilibili.com/599047138"
     // weibo: https://weibo.com/yourname
     // zhihu: https://www.zhihu.com/people/yourname
     // reddit: https://www.reddit.com/user/yourname
@@ -190,50 +189,50 @@ export default {
 
   preloader: {
     enable: true,
-    text: "少女祈祷中...",
+    text: "♪～♪～K-ON!",
     rotate: true, // whether to rotate the icon
   },
 
   // see https://github.com/D-Sketon/mouse-firework
-  firework: {
-    enable: true,
-    disable_on_mobile: false,
-    options: {
-      excludeElements: ["a", "button"],
-      particles: [
-        {
-          shape: "circle",
-          move: ["emit"],
-          easing: "easeOutExpo",
-          colors: [
-            "var(--accent-1)",
-            "var(--accent-2)",
-            "var(--accent-3)",
-            "var(--accent-4)",
-          ],
-          number: 20,
-          duration: [1200, 1800],
-          shapeOptions: {
-            radius: [16, 32],
-            alpha: [0.3, 0.5],
-          },
-        },
-        {
-          shape: "circle",
-          move: ["diffuse"],
-          easing: "easeOutExpo",
-          colors: ["var(--accent-0)"],
-          number: 1,
-          duration: [1200, 1800],
-          shapeOptions: {
-            radius: 20,
-            alpha: [0.2, 0.5],
-            lineWidth: 6,
-          },
-        },
-      ],
-    },
-  },
+  // firework: {
+  //   enable: false,
+  //   disable_on_mobile: false,
+  //   options: {
+  //     excludeElements: ["a", "button"],
+  //     particles: [
+  //       {
+  //         shape: "circle",
+  //         move: ["emit"],
+  //         easing: "easeOutExpo",
+  //         colors: [
+  //           "var(--accent-1)",
+  //           "var(--accent-2)",
+  //           "var(--accent-3)",
+  //           "var(--accent-4)",
+  //         ],
+  //         number: 20,
+  //         duration: [1200, 1800],
+  //         shapeOptions: {
+  //           radius: [16, 32],
+  //           alpha: [0.3, 0.5],
+  //         },
+  //       },
+  //       {
+  //         shape: "circle",
+  //         move: ["diffuse"],
+  //         easing: "easeOutExpo",
+  //         colors: ["var(--accent-0)"],
+  //         number: 1,
+  //         duration: [1200, 1800],
+  //         shapeOptions: {
+  //           radius: 20,
+  //           alpha: [0.2, 0.5],
+  //           lineWidth: 6,
+  //         },
+  //       },
+  //     ],
+  //   },
+  // },
   // show categories card on home page
   home_categories: {
     enable: false,
